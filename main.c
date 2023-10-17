@@ -6,7 +6,7 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/17 19:30:41 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/17 20:15:02 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,7 @@ int	main(int ac, char **av, char **envp)
 {
 	int	pipefd[2];
 	int	pid;
-	char *arg[1] = {" "};
-
-	execve("env", arg, envp);
+	
 	if (ac != 5)
 	{
 		return 1;
