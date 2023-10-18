@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/17 22:37:17 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:09:05 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	check_and_execute(char *cmd, char **envp)
 		while (tab_cmd[i])
 			free(tab_cmd[i++]);
 		free(tab_cmd);
+		ft_putstr_fd("command not found", 2);
 		exit (1);
 	}
 	else

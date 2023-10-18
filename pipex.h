@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:33:29 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/17 22:13:45 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:56:12 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int	    ft_strlen(const char *s);
 int	    ft_strcmp(char *s1, char *s2);
+void	ft_putstr_fd(char *s, int fd);
 #endif

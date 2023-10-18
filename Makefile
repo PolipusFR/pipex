@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/03 10:33:00 by lsabatie          #+#    #+#              #
-#    Updated: 2023/10/17 22:13:11 by lsabatie         ###   ########.fr        #
+#    Updated: 2023/10/18 19:57:03 by lsabatie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	:=	main.c \
 			ft_split.c \
 			ft_strjoin.c \
 			ft_strcmp.c \
+			ft_putstr_fd.c \
                           
 OBJS	:= $(SRCS:.c=.o)
 
