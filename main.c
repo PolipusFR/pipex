@@ -6,7 +6,7 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/17 20:15:02 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:37:17 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
-	printf("----------------------------FREE_TAB-------------------------\n");
 	while (tab[i])
 	{
-		printf("%s\n", tab[i]);
 		free(tab[i++]);
 	}
 	free(tab);
@@ -56,6 +54,7 @@ char	*get_path(char *input_cmd, char	*path_line)
 	char	**path_tab;
 	char	*cmd;
 	char	**cmd_no_args;
+	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -63,8 +62,9 @@ char	*get_path(char *input_cmd, char	*path_line)
 	cmd_no_args = ft_split(input_cmd, ' ');
 	while (path_tab[i])
 	{
-		path_tab[i] = ft_strjoin(path_tab[i], "/");
-		printf("%s\n", path_tab[i]);
+		tmp = ft_strjoin(path_tab[i], "/");
+		free(path_tab[i]);
+		path_tab[i] = tmp;
 		cmd = ft_strjoin(path_tab[i], cmd_no_args[0]);
 		if ((access(cmd, F_OK | X_OK)) == 0)
 		{
@@ -72,12 +72,12 @@ char	*get_path(char *input_cmd, char	*path_line)
 			free_tab(path_tab);
 			return (cmd);
 		}
+		free(cmd);
 		i++;
 	}
-	free(cmd);
 	free_tab(cmd_no_args);
 	free_tab(path_tab);
-	return input_cmd;
+	return (ft_strdup(input_cmd));
 }
 
 void	check_and_execute(char *cmd, char **envp)
@@ -93,7 +93,6 @@ void	check_and_execute(char *cmd, char **envp)
 	tab_cmd = ft_split(cmd, ' ');
 	if (execve(input_cmd, tab_cmd, envp) == -1)
 	{
-		printf("command not found");
 		free(path_line);
 		free(input_cmd);
 		while (tab_cmd[i])
@@ -130,7 +129,7 @@ void	child_process(char **av, int *pipefd, char **envp)
 {
 	int		fd;
 
-	fd = open(av[1], O_RDONLY, 0644);
+	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		exit (1);
 	dup2(fd, STDIN_FILENO);
