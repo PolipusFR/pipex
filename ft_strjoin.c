@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:58:19 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/15 15:47:03 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:49:25 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		ret[i] = s1[i];
 		i++;
 	}
-	while (s2[j])
+	if (s2 != NULL)
 	{
-		ret[i + j] = s2[j];
-		j++;
+		while (s2[j])
+		{
+			ret[i + j] = s2[j];
+			j++;
+		}
 	}
 	ret [i + j] = '\0';
 	return (ret);

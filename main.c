@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/19 14:35:18 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:56:54 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,10 @@ int	main(int ac, char **av, char **envp)
 	int	pid;
 
 	if (ac != 5)
+	{
+		ft_putstr_fd("pipex: syntax : \"./pipex file1 cmd1 cmd2 file2\"\n", 2);
 		return (1);
+	}
 	if (pipe(pipefd) == -1)
 		return (1);
 	pid = fork();

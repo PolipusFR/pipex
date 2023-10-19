@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:26:31 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/19 14:26:55 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:23:11 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	check_and_execute(char *cmd, char **envp, int pid)
 	if (execve(input_cmd, tab_cmd, envp) == -1)
 	{
 		free_c_and_e(tab_cmd, path_line, input_cmd);
-		ft_putstr_fd("pipex: ", 2);
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": command not found\n", 2);
 		if (pid == 1)
