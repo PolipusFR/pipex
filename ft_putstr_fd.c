@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-void	ft_putchar_fd(char c, int fd)
+static void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }

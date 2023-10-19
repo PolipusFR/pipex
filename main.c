@@ -6,7 +6,7 @@
 /*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/18 20:09:05 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:59:17 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	check_and_execute(char *cmd, char **envp)
 		while (tab_cmd[i])
 			free(tab_cmd[i++]);
 		free(tab_cmd);
-		ft_putstr_fd("command not found", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": command not found\n", 2);
 		exit (1);
 	}
 	else
@@ -115,14 +116,19 @@ void	parent_process(char **av, int *pipefd, char **envp)
 {
 	int	fd;
 
+	close(pipefd[1]);
 	fd = open(av[4], O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	if (fd < 0)
-		exit (1);
+	{
+		close(pipefd[0]);
+		perror(av[4]);
+		exit(1);
+	}
 	dup2(fd, STDOUT_FILENO);
-	dup2(pipefd[0], STDIN_FILENO);
 	close(fd);
+	dup2(pipefd[0], STDIN_FILENO);
 	close(pipefd[0]);
-	close(pipefd[1]);
+	waitpid(0, NULL, WUNTRACED);
 	check_and_execute(av[3], envp);
 }
 
@@ -130,13 +136,17 @@ void	child_process(char **av, int *pipefd, char **envp)
 {
 	int		fd;
 
+	close(pipefd[0]);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
+	{
+		close(pipefd[1]);
+		perror(av[1]);
 		exit (1);
+	}
 	dup2(fd, STDIN_FILENO);
-	dup2(pipefd[1], STDOUT_FILENO);
 	close(fd);
-	close(pipefd[0]);
+	dup2(pipefd[1], STDOUT_FILENO);
 	close(pipefd[1]);
 	check_and_execute(av[2], envp);
 }

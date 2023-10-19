@@ -6,7 +6,7 @@
 #    By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/03 10:33:00 by lsabatie          #+#    #+#              #
-#    Updated: 2023/10/18 19:57:03 by lsabatie         ###   ########.fr        #
+#    Updated: 2023/10/19 11:03:29 by lsabatie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,21 +26,23 @@ SRCS	:=	main.c \
 OBJS	:= $(SRCS:.c=.o)
 
 %.o:%.c $(HEADER)
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 RM		    := rm -f
 
-${NAME}:	${OBJS} ${HEADER}
-			${CC} ${FLAGS} -o ${NAME} ${OBJS}
+$(NAME):	$(OBJS) $(HEADER)
+			$(CC) $(FLAGS) -o $(NAME) $(OBJS)
 
-all:		${NAME}
+all:		$(NAME)
 
 clean:
-			${RM} ${OBJS}
+			$(RM) $(OBJS)
 
 fclean:		clean
-			${RM} ${NAME}
+			$(RM) $(NAME)
 
 re:			fclean all
+
+FORCE: 
 
 .PHONY:		all clean fclean re
