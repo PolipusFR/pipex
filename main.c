@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/19 11:59:17 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:27:33 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*get_path_line(char **envp)
 	j = 0;
 	while (envp[i])
 	{
-		if (envp[i][0] == 'P' && envp[i][1] == 'A' && envp[i][2] == 'T' && envp[i][3] == 'H')
+		if (envp[i][0] == 'P' && envp[i][1] == 'A' &&
+				envp[i][2] == 'T' && envp[i][3] == 'H')
 		{
 			while (envp[i][j] && envp[i][j + 5])
 			{
@@ -35,18 +36,6 @@ char	*get_path_line(char **envp)
 		i++;
 	}
 	return (path_line);
-}
-
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i++]);
-	}
-	free(tab);
 }
 
 char	*get_path(char *input_cmd, char	*path_line)
@@ -65,51 +54,16 @@ char	*get_path(char *input_cmd, char	*path_line)
 		tmp = ft_strjoin(path_tab[i], "/");
 		free(path_tab[i]);
 		path_tab[i] = tmp;
-		cmd = ft_strjoin(path_tab[i], cmd_no_args[0]);
+		cmd = ft_strjoin(path_tab[i++], cmd_no_args[0]);
 		if ((access(cmd, F_OK | X_OK)) == 0)
 		{
-			free_tab(cmd_no_args);
-			free_tab(path_tab);
+			free_all_tabs(cmd_no_args, path_tab);
 			return (cmd);
 		}
 		free(cmd);
-		i++;
 	}
-	free_tab(cmd_no_args);
-	free_tab(path_tab);
+	free_all_tabs(cmd_no_args, path_tab);
 	return (ft_strdup(input_cmd));
-}
-
-void	check_and_execute(char *cmd, char **envp)
-{
-	char	**tab_cmd;
-	char	*path_line;
-	char	*input_cmd;
-	int		i;
-	
-	i = 0;
-	path_line = get_path_line(envp);
-	input_cmd = get_path(cmd, path_line);
-	tab_cmd = ft_split(cmd, ' ');
-	if (execve(input_cmd, tab_cmd, envp) == -1)
-	{
-		free(path_line);
-		free(input_cmd);
-		while (tab_cmd[i])
-			free(tab_cmd[i++]);
-		free(tab_cmd);
-		ft_putstr_fd(cmd, 2);
-		ft_putstr_fd(": command not found\n", 2);
-		exit (1);
-	}
-	else
-	{
-		free(path_line);
-		free(input_cmd);
-		while (tab_cmd[i])
-			free(tab_cmd[i++]);
-		free(tab_cmd);
-	}
 }
 
 void	parent_process(char **av, int *pipefd, char **envp)
@@ -155,16 +109,16 @@ int	main(int ac, char **av, char **envp)
 {
 	int	pipefd[2];
 	int	pid;
-	
+
 	if (ac != 5)
 	{
-		return 1;
+		return (1);
 	}
 	if (pipe(pipefd) == -1)
-		return 1;
+		return (1);
 	pid = fork();
 	if (pid < 0)
-		return 1;
+		return (1);
 	if (!pid)
 		child_process(av, pipefd, envp);
 	parent_process(av, pipefd, envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:33:29 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/18 19:56:12 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:32:01 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,16 @@ char	*ft_strdup(const char *s1);
 
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
-int	    ft_strlen(const char *s);
-int	    ft_strcmp(char *s1, char *s2);
+int		ft_strlen(const char *s);
+int		ft_strcmp(char *s1, char *s2);
 void	ft_putstr_fd(char *s, int fd);
+
+void	free_c_and_e(char **tab_cmd, char *path_line, char *input_cmd);
+void	free_tab(char **tab);
+void	free_all_tabs(char **tab1, char **tab2);
+void	check_and_execute(char *cmd, char **envp);
+
+char	*get_path(char *input_cmd, char	*path_line);
+char	*get_path_line(char **envp);
+
 #endif
