@@ -6,7 +6,7 @@
 #    By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/03 10:33:00 by lsabatie          #+#    #+#              #
-#    Updated: 2023/10/19 13:28:09 by lsabatie         ###   ########.fr        #
+#    Updated: 2023/10/19 13:45:35 by lsabatie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,6 @@ clean:
 fclean:		clean
 			$(RM) $(NAME)
 
-re:			fclean all
-
-FORCE: 
+re:			fclean all 
 
 .PHONY:		all clean fclean re

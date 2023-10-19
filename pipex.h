@@ -6,7 +6,7 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:33:29 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/19 13:32:01 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:22:52 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	free_c_and_e(char **tab_cmd, char *path_line, char *input_cmd);
 void	free_tab(char **tab);
 void	free_all_tabs(char **tab1, char **tab2);
-void	check_and_execute(char *cmd, char **envp);
+void	check_and_execute(char *cmd, char **envp, int pid);
 
 char	*get_path(char *input_cmd, char	*path_line);
 char	*get_path_line(char **envp);

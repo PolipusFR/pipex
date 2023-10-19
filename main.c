@@ -6,7 +6,7 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/19 13:27:33 by lsabatie         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:35:18 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*get_path_line(char **envp)
 
 	i = 0;
 	j = 0;
+	if (envp[0] == NULL)
+		return (ft_strdup("\0"));
 	while (envp[i])
 	{
 		if (envp[i][0] == 'P' && envp[i][1] == 'A' &&
@@ -82,8 +84,8 @@ void	parent_process(char **av, int *pipefd, char **envp)
 	close(fd);
 	dup2(pipefd[0], STDIN_FILENO);
 	close(pipefd[0]);
-	waitpid(0, NULL, WUNTRACED);
-	check_and_execute(av[3], envp);
+	waitpid(0, NULL, WNOHANG);
+	check_and_execute(av[3], envp, 1);
 }
 
 void	child_process(char **av, int *pipefd, char **envp)
@@ -95,6 +97,7 @@ void	child_process(char **av, int *pipefd, char **envp)
 	if (fd < 0)
 	{
 		close(pipefd[1]);
+		ft_putstr_fd("pipex: ", 2);
 		perror(av[1]);
 		exit (1);
 	}
@@ -102,7 +105,7 @@ void	child_process(char **av, int *pipefd, char **envp)
 	close(fd);
 	dup2(pipefd[1], STDOUT_FILENO);
 	close(pipefd[1]);
-	check_and_execute(av[2], envp);
+	check_and_execute(av[2], envp, 0);
 }
 
 int	main(int ac, char **av, char **envp)
@@ -111,9 +114,7 @@ int	main(int ac, char **av, char **envp)
 	int	pid;
 
 	if (ac != 5)
-	{
 		return (1);
-	}
 	if (pipe(pipefd) == -1)
 		return (1);
 	pid = fork();
