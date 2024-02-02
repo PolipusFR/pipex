@@ -6,7 +6,7 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:26:31 by lsabatie          #+#    #+#             */
-/*   Updated: 2024/02/02 09:25:18 by lsabatie         ###   ########.fr       */
+/*   Updated: 2024/02/02 09:42:10 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	print_error(char *cmd)
 {
 	ft_putstr_fd("command not found: ", 2);
 	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd("\n", 2);
 }
 
 void	check_and_execute(char *cmd, char **envp, int pid)
@@ -62,6 +61,7 @@ void	check_and_execute(char *cmd, char **envp, int pid)
 	{
 		free_c_and_e(tab_cmd, path_line, input_cmd);
 		print_error(cmd);
+		ft_putstr_fd("\n", 2);
 		if (pid == 1)
 			exit (127);
 		else
