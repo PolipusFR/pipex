@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/03 10:33:00 by lsabatie          #+#    #+#              #
-#    Updated: 2023/10/19 13:45:35 by lsabatie         ###   ########.fr        #
+#    Updated: 2023/10/19 18:15:05 by lsabatie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HEADER  := pipex.h
 NAME	:= pipex
 CC		:= gcc
-FLAGS	:= -Wall -Wextra -Werror -g3
+FLAGS	:= -Wall -Wextra -Werror
 SRCS	:=	main.c \
 			get_next_line.c \
 			get_next_line_utils.c \

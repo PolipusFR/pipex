@@ -6,7 +6,7 @@
 /*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/19 17:56:54 by lsabatie         ###   ########.fr       */
+/*   Updated: 2024/02/02 07:49:44 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	parent_process(char **av, int *pipefd, char **envp)
 	{
 		close(pipefd[0]);
 		perror(av[4]);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
@@ -97,9 +97,8 @@ void	child_process(char **av, int *pipefd, char **envp)
 	if (fd < 0)
 	{
 		close(pipefd[1]);
-		ft_putstr_fd("pipex: ", 2);
 		perror(av[1]);
-		exit (1);
+		exit (EXIT_FAILURE);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
