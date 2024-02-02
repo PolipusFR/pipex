@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:32:43 by lsabatie          #+#    #+#             */
-/*   Updated: 2024/02/02 07:49:44 by lsabatie         ###   ########.fr       */
+/*   Updated: 2024/02/02 09:25:15 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../incs/pipex.h"
 
 char	*get_path_line(char **envp)
 {
@@ -78,7 +78,7 @@ void	parent_process(char **av, int *pipefd, char **envp)
 	{
 		close(pipefd[0]);
 		perror(av[4]);
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
@@ -98,7 +98,7 @@ void	child_process(char **av, int *pipefd, char **envp)
 	{
 		close(pipefd[1]);
 		perror(av[1]);
-		exit (EXIT_FAILURE);
+		exit (1);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
@@ -113,16 +113,13 @@ int	main(int ac, char **av, char **envp)
 	int	pid;
 
 	if (ac != 5)
-	{
-		ft_putstr_fd("pipex: syntax : \"./pipex file1 cmd1 cmd2 file2\"\n", 2);
 		return (1);
-	}
 	if (pipe(pipefd) == -1)
 		return (1);
 	pid = fork();
 	if (pid < 0)
 		return (1);
-	if (!pid)
+	if (pid)
 		child_process(av, pipefd, envp);
 	parent_process(av, pipefd, envp);
 }

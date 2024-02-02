@@ -3,26 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsabatie <lsabatie@student.42.fr>          +#+  +:+       +#+         #
+#    By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/03 10:33:00 by lsabatie          #+#    #+#              #
-#    Updated: 2023/10/19 18:15:05 by lsabatie         ###   ########.fr        #
+#    Updated: 2024/02/02 09:23:47 by lsabatie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-HEADER  := pipex.h
+HEADER  := incs/pipex.h
 NAME	:= pipex
 CC		:= gcc
 FLAGS	:= -Wall -Wextra -Werror
-SRCS	:=	main.c \
-			get_next_line.c \
-			get_next_line_utils.c \
-			ft_strdup.c \
-			ft_split.c \
-			ft_strjoin.c \
-			ft_strcmp.c \
-			ft_putstr_fd.c \
-			pipex_utils.c \
+SRCS	:=	src/main.c \
+			src/get_next_line.c \
+			src/get_next_line_utils.c \
+			src/ft_strdup.c \
+			src/ft_split.c \
+			src/ft_strjoin.c \
+			src/ft_strcmp.c \
+			src/ft_putstr_fd.c \
+			src/pipex_utils.c \
                           
 OBJS	:= $(SRCS:.c=.o)
 

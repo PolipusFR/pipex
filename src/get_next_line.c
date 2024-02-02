@@ -6,11 +6,11 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:48:37 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/15 14:54:46 by lsabatie         ###   ########.fr       */
+/*   Updated: 2024/02/02 09:25:13 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../incs/pipex.h"
 
 char	*gnl_strjoin(char *s1, char *s2)
 {

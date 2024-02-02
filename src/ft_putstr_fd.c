@@ -6,11 +6,11 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:54:46 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/19 13:10:27 by lsabatie         ###   ########.fr       */
+/*   Updated: 2024/02/02 09:24:44 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../incs/pipex.h"
 
 static void	ft_putchar_fd(char c, int fd)
 {

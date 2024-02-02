@@ -6,11 +6,11 @@
 /*   By: lsabatie <lsabatie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:09 by lsabatie          #+#    #+#             */
-/*   Updated: 2023/10/15 15:52:41 by lsabatie         ###   ########.fr       */
+/*   Updated: 2024/02/02 09:24:54 by lsabatie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../incs/pipex.h"
 
 static int	get_size(char *str, char c)
 {
